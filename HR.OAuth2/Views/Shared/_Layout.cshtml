@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>万先丰人力资源平台</title>
+
+    <link href="~/Content/bootstrap/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="~/Content/hrc/hrc.css" rel="stylesheet" />
+    <link href="~/Content/hrc/style.css" rel="stylesheet" />
+    <link href="~/Content/hrc/easyui.css" rel="stylesheet" />
+
+    <link rel="shortcut icon" href="~/favicon.ico" />
+
+    @RenderSection("links", required: false)
+</head>
+<body>
+    <div class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">你好，@System.Threading.Thread.CurrentPrincipal.Identity.Name</a>
+                        <ul class="dropdown-menu">                            
+                            <li><a href="https://passport.sjfood.us">帐号设置</a></li>
+                            <li><a href="@Url.Action("logoff", "sso")">注销</a></li>                            
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="hrc-header">
+        <div class="hrc-logoArea">
+            <div id="hrc-logo" class="hrc-logo"></div>
+        </div>
+        <div class="hrc-nav">
+            <ul>
+                <li><a href="https://myoa.sjfood.us/Schedule/MySchedule">MYOA</a></li>
+                <li><a href="http://cnhr.sjfood.us/index.php?r=hr%2Fdefault%2Femployee">Employee Center</a></li>
+                <li><a href="http://cnhr.sjfood.us">HR Management</a></li>
+                <li><a href="https://foundation.sjfood.us">HR Planning</a></li>
+                <li><a href="https://ticket.sjfood.us">Ticketing System</a></li>
+                <li><a href="http://183.58.24.145:82/">Dev Management</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="appraisal">
+        <div class="appr_container flex_wrap">
+            <div class="appr_sidebar" style="height: 1000px;">
+                <h3 class="appr_side_title">
+                    <i class="icon_todos"></i><span class="txt">账户管理</span>
+                </h3>
+                <ul class="appr_side_list">                    
+                </ul>
+            </div>
+            <div class="appr_bd_wrap">
+                <div class="judge_wrap">
+                    <div class="judge_wrap judge_size_b evaluate_detail">
+                        @RenderBody()
+                    </div>
+                </div>
+                <div class="flex_box">
+                    <i class="arrow"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Scripts/kendo/jquery.min.js"></script>
+
+    <script src="~/Scripts/hrc/hrcsite.js"></script>
+    <script src="~/Scripts/hrc/appraisal.js"></script>
+    <script src="~/Scripts/bootstrap/bootstrap.min.js"></script>
+    <script src="~/Scripts/as.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            
+            buildMenu();
+            
+            // sidebar show and hide.
+            $('.flex_box').click(function () {
+                $('.appr_container.flex_wrap').toggleClass('fold');
+
+                $(window).trigger('resize');
+            });
+        });
+
+    </script>
+
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

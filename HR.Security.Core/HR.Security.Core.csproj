@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{22BF7400-AAE9-4E71-ADB6-702B2ABAB629}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HR.Security.Core</RootNamespace>
+    <AssemblyName>HR.Security.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=3.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Autofac\ApplicationModule.cs" />
+    <Compile Include="Data\IRepository.cs" />
+    <Compile Include="Domain\Client.cs" />
+    <Compile Include="Domain\Mapping\ClientMap.cs" />
+    <Compile Include="Domain\Mapping\MenuGroupMap.cs" />
+    <Compile Include="Domain\Mapping\MenuGroupXRoleMap.cs" />
+    <Compile Include="Domain\Mapping\RoleMap.cs" />
+    <Compile Include="Domain\Mapping\RoleXUserAccountMap.cs" />
+    <Compile Include="Domain\Mapping\UserAccountMap.cs" />
+    <Compile Include="Domain\MenuGroup.cs" />
+    <Compile Include="Domain\MenuGroupXRole.cs" />
+    <Compile Include="Domain\Role.cs" />
+    <Compile Include="Domain\RoleXUserAccount.cs" />
+    <Compile Include="Domain\UserAccount.cs" />
+    <Compile Include="EfRepository.cs" />
+    <Compile Include="EntityBase.cs" />
+    <Compile Include="EntityTypeConfigurationBase.cs" />
+    <Compile Include="IDbContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Results\AddUserResult.cs" />
+    <Compile Include="Results\ResetPasswordResult.cs" />
+    <Compile Include="Results\SignInStatus.cs" />
+    <Compile Include="SecurityObjectContext.cs" />
+    <Compile Include="SecurityObjectContextExtensions.cs" />
+    <Compile Include="Security\Encryptor.cs" />
+    <Compile Include="Security\SecurityPermissionStore.cs" />
+    <Compile Include="Services\Clients\ClientService.cs" />
+    <Compile Include="Services\Clients\IClientService.cs" />
+    <Compile Include="Services\Menu\IMenuService.cs" />
+    <Compile Include="Services\Users\IUserAccountService.cs" />
+    <Compile Include="Services\Menu\MenuService.cs" />
+    <Compile Include="Services\Users\UserAccountService.cs" />
+    <Compile Include="Settings\AppSettingConfig.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Principal\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

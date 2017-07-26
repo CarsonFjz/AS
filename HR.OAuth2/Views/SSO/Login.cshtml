@@ -1,0 +1,78 @@
+﻿@model HR.OAuth2.Models.LoginViewModel
+
+@{
+    Layout = "~/Views/Shared/_SsoLayout.cshtml";
+}
+
+@section links
+{
+    <link href="~/Content/login.css" rel="stylesheet" />
+
+    <link href="~/Content/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/kendo/kendo.common.min.css" rel="stylesheet" />
+    <link href="~/Content/kendo/kendo.default.min.css" rel="stylesheet" />
+}
+
+@section scripts
+{
+    <script src="~/Scripts/kendo/jquery.min.js"></script>
+    <script src="~/Scripts/kendo/kendo.all.min.js"></script>
+
+    <script type="text/javascript">
+
+        $(function () {
+
+            $("#loginForm").kendoValidator().data("kendoValidator");
+
+            showDangerAlert();
+
+        });
+
+        function showDangerAlert() {
+            if ($(".field-validation-error").length) {
+                $("#danger_alert").show();
+            }
+        }
+
+    </script>
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            @using (Html.BeginForm("Login", "SSO", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { id="loginForm", @class = "form-horizontal animate" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <h1>Login</h1>
+                
+                <div class="row formdiv">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="form-group">
+                            @Html.TextBoxFor(x => x.UserName, new { @class = "k-textbox intext", placeholder = "Username", id = "username", name = "Username", required = "required" })
+                        </div>
+                    </div>
+                </div>
+                <div class="row formdiv">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="form-group">
+                            @Html.PasswordFor(x => x.Password, new { @class = "k-textbox intext", id = "password", name = "Password", placeholder = "Password", required = "required" })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">                    
+                    <div id="danger" class="col-md-8 col-md-offset-2">                        
+                        <div id="danger_alert" class="alert alert-danger" role="alert" style="display: none;">
+                            @Html.ValidationMessage("")
+                        </div>
+                    </div>
+                </div>
+                <div class="row formdiv">
+                    <div id="loginbtn" class="col-md-8 col-md-offset-2">
+                        <button type="submit" class="btn btn-primary loginbtn"><b>LOGIN</b></button>
+                    </div>
+                </div>                                
+            }
+        </div>
+    </div>
+</div>
